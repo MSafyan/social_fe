@@ -1,8 +1,8 @@
 import axios from 'axios';
 const JWT_STORAGE_NAME = 'token';
 
-// axios.defaults.baseURL = 'http://localhost:4000';
-axios.defaults.baseURL = 'https://dootbe.herokuapp.com';
+axios.defaults.baseURL = 'http://localhost:4000';
+// axios.defaults.baseURL = 'https://dootbe.herokuapp.com';
 export const getJwt = () => localStorage.getItem(JWT_STORAGE_NAME);
 export const setJwt = (token) => localStorage.setItem(JWT_STORAGE_NAME, token);
 
