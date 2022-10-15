@@ -24,9 +24,7 @@ import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
 //safyan
 // import RoomComponent from './components/livevideos/components/RoomComponent';
-import { Join } from './pages/birdHome/join';
-// import { Room } from './pages/birdHome/Room';
-import { Joiner } from './pages/birdHome/Joiner';
+// import { Join } from './pages/birdHome/join';
 import { TestProvider } from './pages/test/TestContext';
 
 import Test from './pages/test/Test';
@@ -73,11 +71,11 @@ function App() {
 						<ProtectedAuth path='/register' component={SignUp} />
 						{/* safyan */}
 						{/* <ProtectedRoute path='/join/:id' component={Join} /> */}
-						<ProtectedRoute path='/join' component={Join} />
+						{/* <ProtectedRoute path='/join' component={Join} /> */}
 						{/* <ProtectedRoute path='/room/:id' component={Room} /> */}
 						<ProtectedRoute path='/room/:id' component={Test} />
 
-						<ProtectedRoute path='/joiner/:id' component={Joiner} />
+						{/* <ProtectedRoute path='/joiner/:id' component={Joiner} /> */}
 					</TestProvider>
 				</Router>
 			</ThemeProvider>

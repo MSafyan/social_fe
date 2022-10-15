@@ -1,14 +1,12 @@
 import axios from 'axios';
 import FeatherIcon from 'feather-icons-react';
 import { Link, useHistory } from 'react-router-dom';
-import React, { useContext, useState } from 'react';
-import { UserContext } from '../../../pages/birdHome/context/UserContext';
-import { ws } from '../../../pages/birdHome/ws';
+import React, { useState } from 'react';
+import { ws } from '../../../pages/test/ws';
 
 function Header({ isAuth, userId }) {
 	const [loading, setLoading] = useState(false);
 	const [quality, setQuality] = useState(12);
-	const { userName, setUserName } = useContext(UserContext);
 
 	const createRoom = () => {
 		ws.emit('create-room');
