@@ -37,7 +37,7 @@ const Test = () => {
 			>
 				<Box>
 					<Box sx={{ height: '80vh', margin: 'auto' }}>
-						<VideoPlayer stream={stream} />
+						<VideoPlayer stream={stream} muted={!watcher.current} />
 					</Box>
 				</Box>
 				{/* <Box sx={{ gridArea: 'others' }}>
@@ -81,7 +81,7 @@ const Test = () => {
 	);
 };
 
-export const VideoPlayer = ({ stream }) => {
+export const VideoPlayer = ({ stream, muted }) => {
 	const videoRef = useRef(null);
 
 	useEffect(() => {
@@ -95,6 +95,7 @@ export const VideoPlayer = ({ stream }) => {
 			style={{ width: '100%', height: '100%' }}
 			ref={videoRef}
 			autoPlay
+			muted={muted}
 		/>
 	);
 };

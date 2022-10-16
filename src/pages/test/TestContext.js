@@ -89,10 +89,11 @@ export const TestProvider = ({ children }) => {
 		const videoTrack = createEmptyVideoTrack({ width: 640, height: 480 });
 		const mediaStream = new MediaStream([audioTrack, videoTrack]);
 
-		// const navStream = await navigator.mediaDevices.getUserMedia({
+		// const mediaStream = await navigator.mediaDevices.getUserMedia({
 		// 	video: true,
 		// 	audio: true,
 		// });
+
 		console.log('Id', Id);
 
 		const call = peerInstance.current.call(Id, mediaStream, {
@@ -125,16 +126,16 @@ export const TestProvider = ({ children }) => {
 				video: true,
 				audio: true,
 			});
-			// [videoTrack] = navStream.getVideoTracks();
+			// var newStream = navStream;
+			[videoTrack] = navStream.getVideoTracks();
 
-			// const audioStream = await navigator.mediaDevices
-			// 	.getUserMedia({ audio: true })
-			// 	.catch((e) => {
-			// 		throw e;
-			// 	});
-			// [audioTrack] = audioStream.getAudioTracks();
-			// var newStream = new MediaStream([videoTrack, audioTrack]);
-			var newStream = navStream;
+			const audioStream = await navigator.mediaDevices
+				.getUserMedia({ audio: true })
+				.catch((e) => {
+					throw e;
+				});
+			[audioTrack] = audioStream.getAudioTracks();
+			var newStream = new MediaStream([videoTrack, audioTrack]);
 
 			await Api.createStream({ peerId: peerInstance.current._id });
 			setStream(newStream);
