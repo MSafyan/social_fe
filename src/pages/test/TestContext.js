@@ -18,6 +18,7 @@ export const TestProvider = ({ children }) => {
 	const [screenSharingId, setScreenSharingId] = useState('');
 	const peerInstance = useRef(null);
 	const watcher = useRef(false);
+	let audioTrack, videoTrack;
 
 	useEffect(() => {
 		localStorage.setItem('userName', userName);
@@ -47,6 +48,8 @@ export const TestProvider = ({ children }) => {
 	}, [stream]);
 
 	const destoryConnection = () => {
+		audioTrack?.stop();
+		videoTrack?.stop();
 		const myMediaTracks = stream?.getTracks();
 
 		myMediaTracks?.forEach((track) => {
@@ -122,9 +125,19 @@ export const TestProvider = ({ children }) => {
 				video: true,
 				audio: true,
 			});
+			// [videoTrack] = navStream.getVideoTracks();
+
+			// const audioStream = await navigator.mediaDevices
+			// 	.getUserMedia({ audio: true })
+			// 	.catch((e) => {
+			// 		throw e;
+			// 	});
+			// [audioTrack] = audioStream.getAudioTracks();
+			// var newStream = new MediaStream([videoTrack, audioTrack]);
+			var newStream = navStream;
 
 			await Api.createStream({ peerId: peerInstance.current._id });
-			setStream(navStream);
+			setStream(newStream);
 			setScreenSharingId(peerInstance.current.id || '');
 			navStream.oninactive = () => {
 				debugger;
