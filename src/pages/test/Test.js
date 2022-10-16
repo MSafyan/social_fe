@@ -2,19 +2,13 @@ import { useContext, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { ws } from './ws';
 import { TestContext } from './TestContext';
-import { Box, IconButton, TextField, Typography, Button } from '@mui/material';
+import { Box, Typography, Button } from '@mui/material';
 import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 
 const Test = () => {
 	const { id } = useParams();
-	const {
-		userName,
-		userId,
-		stream,
-		shareScreen,
-		watchStream,
-		setScreenSharingId,
-	} = useContext(TestContext);
+	const { userName, userId, stream, shareScreen, screenSharingId } =
+		useContext(TestContext);
 
 	useEffect(() => {
 		if (!stream) {
@@ -73,9 +67,13 @@ const Test = () => {
 					backgroundColor: 'white',
 				}}
 			>
-				<IconButton onClick={shareScreen}>
-					<ScreenShareIcon />
-				</IconButton>
+				<Button
+					onClick={shareScreen}
+					variant='contained'
+					endIcon={<ScreenShareIcon />}
+				>
+					{screenSharingId ? 'Stop Sharing' : 'Start Sharing'}
+				</Button>
 			</Box>
 		</Box>
 	);

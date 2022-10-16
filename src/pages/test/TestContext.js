@@ -52,7 +52,8 @@ export const TestProvider = ({ children }) => {
 	}, [stream]);
 
 	const destoryConnection = () => {
-		const myMediaTracks = stream.getTracks();
+		const myMediaTracks = stream?.getTracks();
+
 		myMediaTracks?.forEach((track) => {
 			track.stop();
 		});
@@ -60,40 +61,81 @@ export const TestProvider = ({ children }) => {
 		// this.myPeer.destroy();
 	};
 
-	const watchStream = (peerId) => {
+	const createEmptyAudioTrack = () => {
+		const ctx = new AudioContext();
+		const oscillator = ctx.createOscillator();
+		const dst = oscillator.connect(ctx.createMediaStreamDestination());
+		oscillator.start();
+		const track = dst.stream.getAudioTracks()[0];
+		return Object.assign(track, { enabled: false });
+	};
+
+	const createEmptyVideoTrack = ({ width, height }) => {
+		const canvas = Object.assign(document.createElement('canvas'), {
+			width,
+			height,
+		});
+		canvas.getContext('2d').fillRect(0, 0, width, height);
+
+		const stream = canvas.captureStream();
+		const track = stream.getVideoTracks()[0];
+
+		return Object.assign(track, { enabled: false });
+	};
+
+	const watchStream = async (peerId) => {
 		var Id = peerId || screenSharingId;
-		navigator.mediaDevices
-			.getUserMedia({ video: true, audio: true })
-			.then((stream) => {
-				console.log('Id', Id);
+		const audioTrack = createEmptyAudioTrack();
+		const videoTrack = createEmptyVideoTrack({ width: 640, height: 480 });
+		const mediaStream = new MediaStream([audioTrack, videoTrack]);
 
-				const call = peerInstance.current.call(Id, stream, {
-					metadata: {
-						screenSharingId,
-						userName: 'caller',
-					},
-				});
-				// debugger;
+		// const navStream = await navigator.mediaDevices.getUserMedia({
+		// 	video: true,
+		// 	audio: true,
+		// });
+		console.log('Id', Id);
 
-				call.on('stream', (remoteStream) => {
-					// debugger;
-					console.log('streamers screen');
-					setStream(remoteStream);
-				});
-			});
+		const call = peerInstance.current.call(Id, mediaStream, {
+			metadata: {
+				screenSharingId,
+				userName: 'caller',
+			},
+		});
+		// debugger;
+
+		call.on('stream', (remoteStream) => {
+			// debugger;
+			console.log('streamers screen');
+			setStream(remoteStream);
+		});
+	};
+
+	const stopSharing = async () => {
+		debugger;
+		destoryConnection();
+		setScreenSharingId('');
+		await Api.deleteStream();
 	};
 
 	const shareScreen = async () => {
 		if (screenSharingId) {
-			destoryConnection();
-			setScreenSharingId('');
-			await Api.deleteStream();
+			stopSharing();
 		} else {
-			navigator.mediaDevices.getDisplayMedia({}).then(async (stream) => {
-				await Api.createStream({ peerId: peerInstance.current._id });
-				setStream(stream);
-				setScreenSharingId(peerInstance.current.id || '');
-			});
+			var navStream = await navigator.mediaDevices.getDisplayMedia({});
+
+			await Api.createStream({ peerId: peerInstance.current._id });
+			setStream(navStream);
+			setScreenSharingId(peerInstance.current.id || '');
+			navStream.onended = () => {
+				// Click on browser UI stop sharing button
+				debugger;
+				console.info('Recording has ended');
+			};
+			navStream.oninactive = () => {
+				debugger;
+
+				stopSharing();
+			};
 		}
 	};
 
@@ -106,6 +148,7 @@ export const TestProvider = ({ children }) => {
 				stream,
 				shareScreen,
 				watchStream,
+				screenSharingId,
 				setScreenSharingId,
 			}}
 		>
