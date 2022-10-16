@@ -99,6 +99,7 @@ function Comments({
 								setComment((prev) => prev + e.emoji);
 							}}
 							theme='dark'
+							emojiStyle='google'
 						/>
 					)}
 					{/* <InputEmoji

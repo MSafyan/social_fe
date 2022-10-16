@@ -35,6 +35,7 @@ function NewArtwork({ allNFT }) {
 									</a>
 									<div className='nft_pic_wrap h-100 w-100'>
 										<img
+											crossorigin='anonymous'
 											src={item.imageUrl}
 											className='lazy img-fluid h-100 w-100'
 											style={{ objectFit: 'cover' }}

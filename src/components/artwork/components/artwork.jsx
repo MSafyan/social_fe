@@ -56,13 +56,23 @@ function Artwork({
 				<Tooltip title={fullname} position='top' trigger='mouseenter'>
 					<div className='author_list_pp'>
 						<Link to={`/create/${userId}`}>
-							<img src={profile} className='lazy' alt='' />
+							<img
+								crossorigin='anonymous'
+								src={profile}
+								className='lazy'
+								alt=''
+							/>
 						</Link>
 					</div>
 				</Tooltip>
 				<div className='nft__item_wrap'>
 					<a href={`${nftLink}/detail/${id}`} target='_blank'>
-						<img src={artwork} className='lazy nft__item_preview' alt='' />
+						<img
+							crossorigin='anonymous'
+							src={artwork}
+							className='lazy nft__item_preview'
+							alt=''
+						/>
 					</a>
 				</div>
 				<div className='nft__item_info'>

@@ -32,6 +32,7 @@ function StoryItem({
 					}}
 				>
 					<img
+						crossorigin='anonymous'
 						src={avatar}
 						className='img-fluid bg-img'
 						data-adaptive-background='1'

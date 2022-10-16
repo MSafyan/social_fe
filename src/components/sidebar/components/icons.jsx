@@ -15,21 +15,21 @@ function Icons({ to, icon, title }) {
 			{to.includes('/saved') ? (
 				<li onClick={() => history.push(to)}>
 					<Link to={to}>
-						<img src={icon} alt='' />
+						<img src={icon} alt='' crossorigin='anonymous' />
 					</Link>{' '}
 					{title}
 				</li>
 			) : to !== '/login' && !to.includes('/saved') ? (
 				<li onClick={() => window.open(to, '_blank')}>
 					<a>
-						<img src={icon} alt='' />
+						<img src={icon} alt='' crossorigin='anonymous' />
 					</a>{' '}
 					{title}
 				</li>
 			) : (
 				<li onClick={logoutHandle}>
 					<a onClick={logoutHandle}>
-						<img src={icon} alt='' />
+						<img src={icon} alt='' crossorigin='anonymous' />
 					</a>{' '}
 					{title}
 				</li>

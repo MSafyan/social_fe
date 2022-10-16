@@ -5,7 +5,12 @@ function UserInfo({ to, avatar, fullname }) {
 		<div className='user-info'>
 			<div className='media'>
 				<Link to={to} className='user-img'>
-					<img src={avatar} className='img-fluid lazyload bg-img' alt='user' />
+					<img
+						src={avatar}
+						className='img-fluid lazyload bg-img'
+						alt='user'
+						crossorigin='anonymous'
+					/>
 				</Link>
 				<div className='media-body'>
 					<Link to={to}>

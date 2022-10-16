@@ -28,6 +28,7 @@ function FriendStory({
 									className='user-img'
 								>
 									<img
+										crossorigin='anonymous'
 										src={user.avatar}
 										className='img-fluid  lazyload bg-img'
 										style={{ borderRadius: '5px', cursor: 'pointer' }}

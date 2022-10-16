@@ -5,8 +5,8 @@ function VideoThumb({ path }) {
 	return (
 		<div className='gameplay-thumb'>
 			<a className='popup-video'>
-				<img src={playBtn} alt='' className='play' />
-				<img src={path} alt='' />
+				<img src={playBtn} alt='' className='play' crossorigin='anonymous' />
+				<img src={path} alt='' crossorigin='anonymous' />
 			</a>
 			<div className='treand-gameplay-overlay'>
 				<ul>

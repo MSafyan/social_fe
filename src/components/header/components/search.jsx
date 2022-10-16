@@ -50,7 +50,7 @@ const Suggestion = ({ id, fullname, avatar }) => {
 	return (
 		<li key={id} onClick={() => (window.location.href = `/profile/${id}`)}>
 			<div className='media'>
-				<img src={avatar} alt='user' />
+				<img src={avatar} alt='user' crossorigin='anonymous' />
 				<div className='media-body'>
 					<div>
 						<h5 className='mt-0'>{fullname}</h5>

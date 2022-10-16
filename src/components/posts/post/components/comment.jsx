@@ -6,7 +6,12 @@ function Comment({ index, fullname, avatar, comment, createdAt }) {
 		<div key={index} className='main-comment'>
 			<div className='media'>
 				<Link to='#' className='user-img'>
-					<img src={avatar} className='img-fluid lazyload bg-img' alt='user' />
+					<img
+						src={avatar}
+						className='img-fluid lazyload bg-img'
+						alt='user'
+						crossorigin='anonymous'
+					/>
 				</Link>
 				<div className='media-body'>
 					<Link to='#'>

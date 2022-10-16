@@ -67,21 +67,21 @@ const Icon = ({ to, icon, title }) => {
 				{to.includes('/saved') ? (
 					<Link to={to}>
 						<div className='icon'>
-							<img src={icon} alt='' />
+							<img src={icon} alt='' crossorigin='anonymous' />
 						</div>
 						<h5>{title}</h5>
 					</Link>
 				) : to !== '/login' && !to.includes('/saved') ? (
 					<a href={to} target='_blank'>
 						<div className='icon'>
-							<img src={icon} alt='' />
+							<img src={icon} alt='' crossorigin='anonymous' />
 						</div>
 						<h5>{title}</h5>
 					</a>
 				) : (
 					<a onClick={logoutHandle}>
 						<div className='icon'>
-							<img src={icon} alt='' />
+							<img src={icon} alt='' crossorigin='anonymous' />
 						</div>
 						<h5>{title}</h5>
 					</a>

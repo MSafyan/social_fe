@@ -11,6 +11,7 @@ function User({ id = '', fullname = '', avatar, filterUsersHandle }) {
 				<div className='media'>
 					<Link to={`/profile/${id}`} className='user-img'>
 						<img
+							crossorigin='anonymous'
 							src={avatar}
 							className='img-fluid lazyload bg-img'
 							alt='user'

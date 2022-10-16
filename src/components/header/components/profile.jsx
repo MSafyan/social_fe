@@ -22,6 +22,7 @@ function Profile({ blurUp, id, fullname, avatar }) {
 					<div className='media d-none d-sm-flex'>
 						<div className='user-img'>
 							<img
+								crossorigin='anonymous'
 								src={avatar}
 								style={{ borderRadius: '100%' }}
 								className={`img-fluid ${blurUp && 'blur-up'} lazyload bg-img`}

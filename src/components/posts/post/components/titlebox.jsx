@@ -9,6 +9,7 @@ function TitleBox({ userId, setLoader, setUserPosts, isAuth, postId, ownerImage,
                 <div className="media">
                     <Link to={`/profile/${userId}`} className="user-img">
                         <img
+                        crossorigin='anonymous'
                             src={ownerImage}
                             className="img-fluid lazyload bg-img"
                             alt="user" />

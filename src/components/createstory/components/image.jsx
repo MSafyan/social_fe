@@ -1,17 +1,19 @@
-import React from 'react'
+import React from 'react';
 
 function Image({ storyPreview }) {
-    return (
-        <>
-            {
-                storyPreview.file &&
-                <div style={{ marginTop: '10px' }}>
-                    <img src={storyPreview.file}
-                        alt="story"
-                        style={{ width: '100%', borderRadius: '5px' }} />
-                </div>
-            }
-        </>
-    )
+	return (
+		<>
+			{storyPreview.file && (
+				<div style={{ marginTop: '10px' }}>
+					<img
+						src={storyPreview.file}
+						crossorigin='anonymous'
+						alt='story'
+						style={{ width: '100%', borderRadius: '5px' }}
+					/>
+				</div>
+			)}
+		</>
+	);
 }
-export default Image
+export default Image;
