@@ -7,7 +7,7 @@ import ScreenShareIcon from '@mui/icons-material/ScreenShare';
 
 const Test = () => {
 	const { id } = useParams();
-	const { userName, userId, stream, shareScreen, screenSharingId } =
+	const { userName, userId, stream, shareScreen, screenSharingId, watcher } =
 		useContext(TestContext);
 
 	useEffect(() => {
@@ -15,6 +15,9 @@ const Test = () => {
 			ws.emit('join-room', { roomId: id, peerId: userId, userName });
 			// shareScreen();
 		}
+		return () => {
+			watcher.current = false;
+		};
 	}, [userId, stream]);
 
 	return (
@@ -53,28 +56,30 @@ const Test = () => {
 					</Button>
 				</Box> */}
 			</Box>
-			<Box
-				className='fixed bottom-0 p-6 w-full flex items-center justify-center border-t-2 bg-white'
-				sx={{
-					height: '4rem',
-					position: 'fixed',
-					padding: 1,
-					width: '100%',
-					display: 'flex',
-					justifyContent: 'center',
-					alignItems: 'center',
-					borderTop: 2,
-					backgroundColor: 'white',
-				}}
-			>
-				<Button
-					onClick={shareScreen}
-					variant='contained'
-					endIcon={<ScreenShareIcon />}
+			{!watcher.current && (
+				<Box
+					className='fixed bottom-0 p-6 w-full flex items-center justify-center border-t-2 bg-white'
+					sx={{
+						height: '4rem',
+						position: 'fixed',
+						padding: 1,
+						width: '100%',
+						display: 'flex',
+						justifyContent: 'center',
+						alignItems: 'center',
+						borderTop: 2,
+						backgroundColor: 'white',
+					}}
 				>
-					{screenSharingId ? 'Stop Sharing' : 'Start Sharing'}
-				</Button>
-			</Box>
+					<Button
+						onClick={shareScreen}
+						variant='contained'
+						endIcon={<ScreenShareIcon />}
+					>
+						{screenSharingId ? 'Stop Sharing' : 'Start Sharing'}
+					</Button>
+				</Box>
+			)}
 		</Box>
 	);
 };

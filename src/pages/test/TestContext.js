@@ -17,6 +17,7 @@ export const TestProvider = ({ children }) => {
 	const [stream, setStream] = useState();
 	const [screenSharingId, setScreenSharingId] = useState('');
 	const peerInstance = useRef(null);
+	const watcher = useRef(false);
 
 	useEffect(() => {
 		localStorage.setItem('userName', userName);
@@ -34,15 +35,9 @@ export const TestProvider = ({ children }) => {
 		});
 
 		peerInstance.current = peer;
-		console.log(peer._id);
 		peer.on('call', (call) => {
-			// receiver
-			// debugger;
-			const { userName, screenSharingId } = call.metadata;
 			call.answer(stream);
-			call.on('stream', (peerStream) => {
-				console.log('receiver', peerStream);
-			});
+			call.on('stream', (peerStream) => {});
 		});
 
 		return () => {
@@ -84,6 +79,8 @@ export const TestProvider = ({ children }) => {
 	};
 
 	const watchStream = async (peerId) => {
+		debugger;
+		watcher.current = true;
 		var Id = peerId || screenSharingId;
 		const audioTrack = createEmptyAudioTrack();
 		const videoTrack = createEmptyVideoTrack({ width: 640, height: 480 });
@@ -126,14 +123,8 @@ export const TestProvider = ({ children }) => {
 			await Api.createStream({ peerId: peerInstance.current._id });
 			setStream(navStream);
 			setScreenSharingId(peerInstance.current.id || '');
-			navStream.onended = () => {
-				// Click on browser UI stop sharing button
-				debugger;
-				console.info('Recording has ended');
-			};
 			navStream.oninactive = () => {
 				debugger;
-
 				stopSharing();
 			};
 		}
@@ -149,6 +140,7 @@ export const TestProvider = ({ children }) => {
 				shareScreen,
 				watchStream,
 				screenSharingId,
+				watcher,
 				setScreenSharingId,
 			}}
 		>

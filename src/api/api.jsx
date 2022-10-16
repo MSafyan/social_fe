@@ -43,7 +43,6 @@ export default class Api {
 	static getStream = async (data) => {
 		try {
 			const res = await axios.get(`/api/v1/stream/all`, data);
-			Notifications('success', 'streams');
 			return res;
 		} catch (error) {
 			errorHandler(error.response.data);
