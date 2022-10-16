@@ -118,7 +118,10 @@ export const TestProvider = ({ children }) => {
 		if (screenSharingId) {
 			stopSharing();
 		} else {
-			var navStream = await navigator.mediaDevices.getDisplayMedia({});
+			var navStream = await navigator.mediaDevices.getDisplayMedia({
+				video: true,
+				audio: true,
+			});
 
 			await Api.createStream({ peerId: peerInstance.current._id });
 			setStream(navStream);
