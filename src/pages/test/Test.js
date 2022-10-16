@@ -25,9 +25,6 @@ const Test = () => {
 			className='flex flex-col min-h-screen'
 			sx={{ display: 'flex', flexDirection: 'column' }}
 		>
-			<Box sx={{ backgroundColor: '#333', color: 'white', p: 1 }}>
-				<Typography variant='body1'>Room id {id}</Typography>
-			</Box>
 			<Box
 				sx={{
 					display: 'grid',
@@ -98,7 +95,6 @@ export const VideoPlayer = ({ stream }) => {
 			style={{ width: '100%', height: '100%' }}
 			ref={videoRef}
 			autoPlay
-			muted={true}
 		/>
 	);
 };
