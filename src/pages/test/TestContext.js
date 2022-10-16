@@ -126,16 +126,20 @@ export const TestProvider = ({ children }) => {
 				video: true,
 				audio: true,
 			});
-			// var newStream = navStream;
-			[videoTrack] = navStream.getVideoTracks();
+			var newStream = navStream;
+			// [videoTrack] = navStream.getVideoTracks();
 
-			const audioStream = await navigator.mediaDevices
-				.getUserMedia({ audio: true })
-				.catch((e) => {
-					throw e;
-				});
-			[audioTrack] = audioStream.getAudioTracks();
-			var newStream = new MediaStream([videoTrack, audioTrack]);
+			// const audioStream = await navigator.mediaDevices
+			// 	.getUserMedia({
+			// 		audio: true,
+			// 		noiseSuppression: true,
+			// 		echoCancellation: true,
+			// 	})
+			// 	.catch((e) => {
+			// 		throw e;
+			// 	});
+			// [audioTrack] = audioStream.getAudioTracks();
+			// var newStream = new MediaStream([videoTrack, audioTrack]);
 
 			await Api.createStream({ peerId: peerInstance.current._id });
 			setStream(newStream);
