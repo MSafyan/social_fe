@@ -23,12 +23,12 @@ function Sidebar() {
 					title='NFT Marketplace'
 				/>
 				<Icons
-					to={`${nftLink}/active-bids`}
+					to={`${nftLink}/active-bids/${getJwt()}`}
 					icon={activeBid}
 					title='Active Bid'
 				/>
 				<Icons
-					to={`${nftLink}/saved/${profileMe._id}/${getJwt()}`}
+					to={`${nftLink}/collections/${profileMe._id}/${getJwt()}`}
 					icon={saved}
 					title='Saved'
 				/>
