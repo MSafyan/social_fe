@@ -27,11 +27,7 @@ function Sidebar() {
 					icon={activeBid}
 					title='Active Bid'
 				/>
-				<Icons
-					to={`${nftLink}/collections/${profileMe._id}/${getJwt()}`}
-					icon={saved}
-					title='Saved'
-				/>
+				<Icons to={`saved/${profileMe._id}`} icon={saved} title='Saved' />
 				<Icons to={`${dootLink}/${getJwt()}`} icon={message} title='Messages' />
 				<Icons
 					to={`${nftLink}/collections/${profileMe._id}/${getJwt()}`}
