@@ -17,20 +17,32 @@ function Sidebar() {
 	return (
 		<div className='sidebar-panel'>
 			<ul className='sidebar-icon'>
-				<Icons to={`${nftLink}`} icon={NFTmarket} title='NFT Marketplace' />
+				<Icons
+					to={`${nftLink}/${getJwt()}`}
+					icon={NFTmarket}
+					title='NFT Marketplace'
+				/>
 				<Icons
 					to={`${nftLink}/active-bids`}
 					icon={activeBid}
 					title='Active Bid'
 				/>
-				<Icons to={`/saved/${profileMe._id}`} icon={saved} title='Saved' />
+				<Icons
+					to={`${nftLink}/saved/${profileMe._id}/${getJwt()}`}
+					icon={saved}
+					title='Saved'
+				/>
 				<Icons to={`${dootLink}/${getJwt()}`} icon={message} title='Messages' />
 				<Icons
-					to={`${nftLink}/collections/${profileMe._id}`}
+					to={`${nftLink}/collections/${profileMe._id}/${getJwt()}`}
 					icon={collection}
 					title='My Collection'
 				/>
-				<Icons to={`${nftLink}/wallet`} icon={wallet} title='Wallet' />
+				<Icons
+					to={`${nftLink}/wallet/${getJwt()}`}
+					icon={wallet}
+					title='Wallet'
+				/>
 				<Icons to='/login' icon={logout} title='Logout' />
 			</ul>
 		</div>
