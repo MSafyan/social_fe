@@ -2,7 +2,7 @@ import Cookies from 'js-cookie';
 import { Link, useHistory } from 'react-router-dom';
 import Api from '../../../api/api';
 
-function Icons({ to, icon, title }) {
+function Icons({ to, icon, title, block }) {
 	const history = useHistory();
 	const logoutHandle = async () => {
 		await Api.userLogout();
@@ -13,21 +13,38 @@ function Icons({ to, icon, title }) {
 	return (
 		<>
 			{to.includes('/saved') ? (
-				<li onClick={() => history.push(to)}>
+				<li
+					onClick={() => {
+						if (!block) {
+							history.push(to);
+						}
+					}}
+					style={{ cursor: block ? 'not-allowed' : 'pointer' }}
+				>
 					<Link to={to}>
 						<img src={icon} alt='' crossorigin='anonymous' />
 					</Link>{' '}
 					{title}
 				</li>
 			) : to !== '/login' && !to.includes('/saved') ? (
-				<li onClick={() => window.open(to, '_blank')}>
+				<li
+					onClick={() => {
+						if (!block) {
+							window.open(to, '_blank');
+						}
+					}}
+					style={{ cursor: block ? 'not-allowed' : 'pointer' }}
+				>
 					<a>
 						<img src={icon} alt='' crossorigin='anonymous' />
 					</a>{' '}
 					{title}
 				</li>
 			) : (
-				<li onClick={logoutHandle}>
+				<li
+					onClick={logoutHandle}
+					style={{ cursor: block ? 'not-allowed' : 'pointer' }}
+				>
 					<a onClick={logoutHandle}>
 						<img src={icon} alt='' crossorigin='anonymous' />
 					</a>{' '}
