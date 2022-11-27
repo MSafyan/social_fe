@@ -21,23 +21,25 @@ function Sidebar() {
 					to={`${nftLink}/${getJwt()}`}
 					icon={NFTmarket}
 					title='NFT Marketplace'
+					block
 				/>
 				<Icons
 					to={`${nftLink}/active-bids/${getJwt()}`}
 					icon={activeBid}
 					title='Active Bid'
+					block
 				/>
-				<Icons to={`saved/${profileMe._id}`} icon={saved} title='Saved' />
+				<Icons to={`saved/${profileMe._id}`} icon={saved} title='Saved' block />
 				<Icons to={`${dootLink}/${getJwt()}`} icon={message} title='Messages' />
 				<Icons
 					to={`${nftLink}/collections/${profileMe._id}/${getJwt()}`}
 					icon={collection}
 					title='My Collection'
-					block
 				/>
 				<Icons
 					to={`${nftLink}/wallet/${getJwt()}`}
 					icon={wallet}
+					block
 					title='Wallet'
 				/>
 				<Icons to='/login' icon={logout} title='Logout' />
