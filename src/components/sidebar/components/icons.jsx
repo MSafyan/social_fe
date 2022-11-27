@@ -10,6 +10,7 @@ function Icons({ to, icon, title, block }) {
 		Cookies.remove('auth');
 		history.push(to);
 	};
+
 	return (
 		<>
 			{to.includes('/saved') ? (
@@ -47,7 +48,7 @@ function Icons({ to, icon, title, block }) {
 				>
 					<a onClick={logoutHandle}>
 						<img src={icon} alt='' crossorigin='anonymous' />
-					</a>{' '}
+					</a>
 					{title}
 				</li>
 			)}

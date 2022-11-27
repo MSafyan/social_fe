@@ -35,6 +35,7 @@ function Sidebar() {
 					to={`${nftLink}/collections/${profileMe._id}/${getJwt()}`}
 					icon={collection}
 					title='My Collection'
+					block
 				/>
 				<Icons
 					to={`${nftLink}/wallet/${getJwt()}`}
