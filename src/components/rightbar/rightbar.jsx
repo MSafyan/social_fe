@@ -25,7 +25,7 @@ function RightBar({ activeLanders }) {
 	return (
 		<div className='conversation-panel xl-light'>
 			<div className='panel-header'>
-				<h2>Active Landers</h2>
+				<h2>Active Residents</h2>
 			</div>
 			<div className='friend-section'>
 				<div className='friend-list'>
